@@ -47,7 +47,13 @@ def main : IO Unit := do
   IO.println s!"{nₓ}"
   let n₂ : Nat := FuncDep.CountParts_.φ "Tarmogoyf" 'o'
   IO.println s!"{n₂}"
-  let n₃ : Nat := FuncDep.CountParts.φ "Tarmogoyf" 'o'
+  let n₂' := (FuncDep.CountParts_.φ "Tarmogoyf" 'o' : Nat)
+  /-
+  failed to synthesize instance
+    ToString (FuncDep.CountParts_.α String)
+  -/
+  -- IO.println s!"{n₂'}"
+  let n₃ : Nat := FuncDep.CountParts.φ "Magnivore" 'o'
   IO.println s!"{n₃}"
   let n₄ := countNonsense "Paradox Engine"
   IO.println s!"{n₄}"
