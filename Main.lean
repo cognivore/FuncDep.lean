@@ -1,16 +1,24 @@
 import FuncDep
+import Std.Data.RBMap
 
 def countStrX (xs : String) : Nat :=
   FuncDep.CountParts.φ xs 'x'
-
-def countNonsense (xs : String) : Char :=
-  FuncDep.CountParts.φ xs 0.3
 
 def concreteInstanceCall (xs : String) : FuncDep.instCountParts_String.α  :=
   FuncDep.CountParts_.φ xs 'x'
 
 def deducedInstanceCall (xs : T) [i : FuncDep.CountParts_ T] :=
   FuncDep.CountParts_.φ xs
+
+-- def deduceFromBeq (xs : List Float) (x : Float) : Nat :=
+  /-
+  failed to synthesize instance
+    FuncDep.CountParts (List Float) Float Nat
+  -/
+  -- FuncDep.CountParts.φ xs x
+
+def resolveFromType (xs : List Nat) (ns : List Nat) : Std.RBMap Nat Nat Ord.compare :=
+  FuncDep.CountParts.φ xs ns
 
 /-
 failed to synthesize instance
@@ -47,7 +55,7 @@ def main : IO Unit := do
   IO.println s!"{nₓ}"
   let n₂ : Nat := FuncDep.CountParts_.φ "Tarmogoyf" 'o'
   IO.println s!"{n₂}"
-  let n₂' := (FuncDep.CountParts_.φ "Tarmogoyf" 'o' : Nat)
+  let n₂' := ((FuncDep.CountParts_.φ "Tarmogoyf" 'o') : Nat)
   /-
   failed to synthesize instance
     ToString (FuncDep.CountParts_.α String)
@@ -55,5 +63,5 @@ def main : IO Unit := do
   -- IO.println s!"{n₂'}"
   let n₃ : Nat := FuncDep.CountParts.φ "Magnivore" 'o'
   IO.println s!"{n₃}"
-  let n₄ := countNonsense "Paradox Engine"
-  IO.println s!"{n₄}"
+  let xkv := resolveFromType [2, 2, 3, 15, 7] [3, 2, 1, 2, 2, 2, 3, 2, 3, 3]
+  IO.println s!"{xkv.toList} = [(1, 0), (2, 5 * 2), (3, 4 * 1)]"
