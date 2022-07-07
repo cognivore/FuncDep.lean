@@ -45,8 +45,8 @@ but is expected to have type
 def main : IO Unit := do
   let nₓ := countStrX "Rhox"
   IO.println s!"{nₓ}"
-  -- let n₂ := FuncDep.CountParts.φ "Tarmogoyf" 'o'
-  -- IO.println s!"{n₂}"
+  let n₂ : Nat := FuncDep.CountParts_.φ "Tarmogoyf" 'o'
+  IO.println s!"{n₂}"
   let n₃ : Nat := FuncDep.CountParts.φ "Tarmogoyf" 'o'
   IO.println s!"{n₃}"
   let n₄ := countNonsense "Paradox Engine"
