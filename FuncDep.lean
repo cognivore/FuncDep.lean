@@ -23,7 +23,14 @@ instance : CountParts String Float Char where
 
 /- Somehow, Lean manages to see `Nat ~ CountParts_.α String` in the instance declaration! -/
 instance : CountParts String Char Nat where
-  φ haystack needle := FuncDep.instCountParts_String.φ haystack needle
+  φ haystack needle :=
+    let y : Nat := FuncDep.instCountParts_String.φ haystack needle
+    y + 1
+/-
+failed to synthesize instance
+  HAdd (CountParts_.α String) Nat ?m.419
+-/
+  -- φ haystack needle := (FuncDep.instCountParts_String.φ haystack needle : Nat) + 1
 
 instance : CountParts Char Float Char where
   φ _ _ := '!'
